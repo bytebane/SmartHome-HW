@@ -15,12 +15,64 @@ void setupStartLED()
   digitalWrite(PIN8, OFF);
 
   digitalWrite(PIN_R, HIGH);
-  digitalWrite(PIN_G, HIGH);
+  delay(300);
   digitalWrite(PIN_Y, HIGH);
+  delay(300);
+  digitalWrite(PIN_G, HIGH);
+}
+
+// Pattern R->G->Y
+void setupSmartConfigLED()
+{
+  digitalWrite(PIN_R, HIGH);
+  digitalWrite(PIN_G, LOW);
+  digitalWrite(PIN_Y, LOW);
+  delay(500);
+  digitalWrite(PIN_R, LOW);
+  digitalWrite(PIN_G, HIGH);
+  digitalWrite(PIN_Y, LOW);
+  delay(500);
+  digitalWrite(PIN_R, LOW);
+  digitalWrite(PIN_G, LOW);
+  digitalWrite(PIN_Y, HIGH);
+  delay(500);
+}
+
+// Pattern Y->G->Y->R
+void setupWifiLED()
+{
+  digitalWrite(PIN_R, LOW);
+  digitalWrite(PIN_G, LOW);
+  digitalWrite(PIN_Y, HIGH);
+  delay(500);
+  digitalWrite(PIN_R, LOW);
+  digitalWrite(PIN_G, HIGH);
+  digitalWrite(PIN_Y, LOW);
+  delay(500);
+  digitalWrite(PIN_R, LOW);
+  digitalWrite(PIN_G, LOW);
+  digitalWrite(PIN_Y, HIGH);
+  delay(500);
+  digitalWrite(PIN_R, HIGH);
+  digitalWrite(PIN_G, LOW);
+  digitalWrite(PIN_Y, LOW);
+  delay(500);
 }
 
 void setupEndLED()
 {
+  digitalWrite(PIN_R, HIGH);
+  digitalWrite(PIN_G, HIGH);
+  digitalWrite(PIN_Y, HIGH);
+  delay(500);
+  digitalWrite(PIN_R, LOW);
+  digitalWrite(PIN_G, LOW);
+  digitalWrite(PIN_Y, LOW);
+  delay(500);
+  digitalWrite(PIN_R, HIGH);
+  digitalWrite(PIN_G, HIGH);
+  digitalWrite(PIN_Y, HIGH);
+  delay(500);
   digitalWrite(PIN_R, LOW);
   digitalWrite(PIN_G, LOW);
   digitalWrite(PIN_Y, LOW);
@@ -29,23 +81,27 @@ void setupEndLED()
 void wifiConnectedLED()
 {
   digitalWrite(PIN_R, LOW);
+  digitalWrite(PIN_G, LOW);
   digitalWrite(PIN_Y, HIGH);
 }
 
 void dbConnectedLED()
 {
+  digitalWrite(PIN_R, LOW);
   digitalWrite(PIN_G, HIGH);
+  digitalWrite(PIN_Y, LOW);
 }
 
 void wifiErrorLED()
 {
   digitalWrite(PIN_R, HIGH);
   digitalWrite(PIN_G, LOW);
-  digitalWrite(PIN_Y, LOW);
+  digitalWrite(PIN_Y, HIGH);
 }
 
 void dbErrorLED()
 {
-  digitalWrite(PIN_G, LOW);
   digitalWrite(PIN_R, HIGH);
+  digitalWrite(PIN_G, HIGH);
+  digitalWrite(PIN_Y, LOW);
 }

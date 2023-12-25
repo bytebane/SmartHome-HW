@@ -37,7 +37,7 @@ String childPath[5] = {"/switch1", "/switch2", "/switch3", "/switch4", "/switch5
 
 void setup()
 {
-  Serial.begin(921600);
+  Serial.begin(115200);
 
   pinMode(WiFi_rst, INPUT);
 
@@ -78,18 +78,21 @@ void setup()
     Serial.println("Waiting for SmartConfig. If it does not connect, try with different credentials.");
     while (!WiFi.smartConfigDone())
     {
-      delay(500);
+      setupSmartConfigLED();
       Serial.print("*");
+      delay(500);
     }
     Serial.println();
     Serial.println("SmartConfig done!");
     Serial.println("Connecting to WiFi...");
     while (WiFi.status() != WL_CONNECTED)
     {
-      delay(500);
+      setupWifiLED();
       Serial.print(".");
+      delay(500);
     }
     Serial.println("");
+    wifiConnectedLED();
     Serial.println("WiFi connected!");
     // Serial.println("IP address: ");
     // Serial.println(WiFi.localIP());
@@ -159,7 +162,6 @@ void loop()
   else
   {
     // WiFi connected
-    wifiConnectedLED();
     if (Firebase.ready())
     {
       dbConnectedLED();
@@ -180,6 +182,7 @@ void loop()
     if (!stream.httpConnected())
     {
       // Server was disconnected!
+      digitalWrite(PIN_R, HIGH);
       Serial.printf("Stream disconnected: %s\n", stream.errorReason());
     }
   }
